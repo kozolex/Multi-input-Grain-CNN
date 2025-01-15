@@ -1,0 +1,264 @@
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=EfficientNet_V2_M_Weights.IMAGENET1K_V1`. You can also use `weights=EfficientNet_V2_M_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Model: efficientnet_v2_m, base_model_output_size: 1280
+Total input size to fc: 2688
+Epoch 1/50
+Training: 100%|██████████| 4344/4344 [54:35<00:00,  1.33batch/s, loss=1.9045]
+Validation: 100%|██████████| 931/931 [06:03<00:00,  2.56batch/s]
+Best model saved at epoch 1
+Epoch 2/50
+Training: 100%|██████████| 4344/4344 [54:26<00:00,  1.33batch/s, loss=1.2022]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+Best model saved at epoch 2
+Epoch 3/50
+Training: 100%|██████████| 4344/4344 [54:25<00:00,  1.33batch/s, loss=0.7769]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+Best model saved at epoch 3
+Epoch 4/50
+Training: 100%|██████████| 4344/4344 [54:23<00:00,  1.33batch/s, loss=0.5478]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+Best model saved at epoch 4
+Epoch 5/50
+Training: 100%|██████████| 4344/4344 [54:25<00:00,  1.33batch/s, loss=0.4333]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.54batch/s]
+Best model saved at epoch 5
+Epoch 6/50
+Training: 100%|██████████| 4344/4344 [54:23<00:00,  1.33batch/s, loss=0.3592]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+Best model saved at epoch 6
+Epoch 7/50
+Training: 100%|██████████| 4344/4344 [54:24<00:00,  1.33batch/s, loss=0.3168]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 8/50
+Training: 100%|██████████| 4344/4344 [54:22<00:00,  1.33batch/s, loss=0.2781]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.56batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 9/50
+Training: 100%|██████████| 4344/4344 [54:20<00:00,  1.33batch/s, loss=0.2514]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+No improvement in val loss for 3 epoch(s)
+Epoch 10/50
+Training: 100%|██████████| 4344/4344 [55:06<00:00,  1.31batch/s, loss=0.2297]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.56batch/s]
+Best model saved at epoch 10
+Epoch 11/50
+Training: 100%|██████████| 4344/4344 [54:21<00:00,  1.33batch/s, loss=0.2118]
+Validation: 100%|██████████| 931/931 [06:03<00:00,  2.56batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 12/50
+Training: 100%|██████████| 4344/4344 [54:20<00:00,  1.33batch/s, loss=0.1921]
+Validation: 100%|██████████| 931/931 [06:17<00:00,  2.47batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 13/50
+Training: 100%|██████████| 4344/4344 [54:41<00:00,  1.32batch/s, loss=0.1831]
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+No improvement in val loss for 3 epoch(s)
+Epoch 14/50
+Training: 100%|██████████| 4344/4344 [54:20<00:00,  1.33batch/s, loss=0.1702]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+Best model saved at epoch 14
+Epoch 15/50
+Training: 100%|██████████| 4344/4344 [54:22<00:00,  1.33batch/s, loss=0.1612]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 16/50
+Training: 100%|██████████| 4344/4344 [54:19<00:00,  1.33batch/s, loss=0.1582]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.56batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 17/50
+Training: 100%|██████████| 4344/4344 [54:21<00:00,  1.33batch/s, loss=0.1461]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+No improvement in val loss for 3 epoch(s)
+Epoch 18/50
+Training: 100%|██████████| 4344/4344 [54:22<00:00,  1.33batch/s, loss=0.1360]
+Validation: 100%|██████████| 931/931 [06:04<00:00,  2.55batch/s]
+No improvement in val loss for 4 epoch(s)
+Epoch 19/50
+Training: 100%|██████████| 4344/4344 [54:46<00:00,  1.32batch/s, loss=0.1310] 
+Validation: 100%|██████████| 931/931 [06:05<00:00,  2.55batch/s]
+No improvement in val loss for 5 epoch(s)
+Early stopping triggered. Training stopped.
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=MobileNet_V3_Small_Weights.IMAGENET1K_V1`. You can also use `weights=MobileNet_V3_Small_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth" to /home/mk/.cache/torch/hub/checkpoints/mobilenet_v3_small-047dcff4.pth
+100%|██████████| 9.83M/9.83M [00:00<00:00, 10.8MB/s]
+Model: mobilenet_v3_small, base_model_output_size: 576
+Total input size to fc: 1280
+Epoch 1/50
+Training: 100%|██████████| 2172/2172 [20:54<00:00,  1.73batch/s, loss=0.4512]
+Validation: 100%|██████████| 466/466 [04:00<00:00,  1.94batch/s]
+Best model saved at epoch 1
+Epoch 2/50
+Training: 100%|██████████| 2172/2172 [20:42<00:00,  1.75batch/s, loss=0.2062]
+Validation: 100%|██████████| 466/466 [04:00<00:00,  1.94batch/s]
+Best model saved at epoch 2
+Epoch 3/50
+Training: 100%|██████████| 2172/2172 [20:44<00:00,  1.75batch/s, loss=0.1614]
+Validation: 100%|██████████| 466/466 [04:00<00:00,  1.94batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 4/50
+Training: 100%|██████████| 2172/2172 [20:44<00:00,  1.75batch/s, loss=0.1326]
+Validation: 100%|██████████| 466/466 [04:00<00:00,  1.94batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 5/50
+Training: 100%|██████████| 2172/2172 [20:43<00:00,  1.75batch/s, loss=0.1180]
+Validation: 100%|██████████| 466/466 [03:59<00:00,  1.94batch/s]
+No improvement in val loss for 3 epoch(s)
+Epoch 6/50
+Training: 100%|██████████| 2172/2172 [20:44<00:00,  1.74batch/s, loss=0.1047]
+Validation: 100%|██████████| 466/466 [04:00<00:00,  1.94batch/s]
+No improvement in val loss for 4 epoch(s)
+Epoch 7/50
+Training: 100%|██████████| 2172/2172 [20:43<00:00,  1.75batch/s, loss=0.0948]
+Validation: 100%|██████████| 466/466 [03:59<00:00,  1.94batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet34_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet34_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+No improvement in val loss for 5 epoch(s)
+Early stopping triggered. Training stopped.
+Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /home/mk/.cache/torch/hub/checkpoints/resnet34-b627a593.pth
+100%|██████████| 83.3M/83.3M [00:07<00:00, 11.7MB/s]
+Model: resnet34, base_model_output_size: 512
+Total input size to fc: 1152
+Epoch 1/50
+Training: 100%|██████████| 2172/2172 [25:14<00:00,  1.43batch/s, loss=1.6726]
+Validation: 100%|██████████| 466/466 [04:24<00:00,  1.76batch/s]
+Best model saved at epoch 1
+Epoch 2/50
+Training: 100%|██████████| 2172/2172 [24:30<00:00,  1.48batch/s, loss=0.8187]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+Best model saved at epoch 2
+Epoch 3/50
+Training: 100%|██████████| 2172/2172 [24:33<00:00,  1.47batch/s, loss=0.5215]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+Best model saved at epoch 3
+Epoch 4/50
+Training: 100%|██████████| 2172/2172 [24:33<00:00,  1.47batch/s, loss=0.3857]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+Best model saved at epoch 4
+Epoch 5/50
+Training: 100%|██████████| 2172/2172 [24:35<00:00,  1.47batch/s, loss=0.3127]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 6/50
+Training: 100%|██████████| 2172/2172 [24:34<00:00,  1.47batch/s, loss=0.2584]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 7/50
+Training: 100%|██████████| 2172/2172 [24:32<00:00,  1.47batch/s, loss=0.2182]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+Best model saved at epoch 7
+Epoch 8/50
+Training: 100%|██████████| 2172/2172 [24:32<00:00,  1.47batch/s, loss=0.1866]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 9/50
+Training: 100%|██████████| 2172/2172 [24:35<00:00,  1.47batch/s, loss=0.1601]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+Best model saved at epoch 9
+Epoch 10/50
+Training: 100%|██████████| 2172/2172 [24:31<00:00,  1.48batch/s, loss=0.1425]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+Best model saved at epoch 10
+Epoch 11/50
+Training: 100%|██████████| 2172/2172 [24:31<00:00,  1.48batch/s, loss=0.1236]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 1 epoch(s)
+Epoch 12/50
+Training: 100%|██████████| 2172/2172 [24:32<00:00,  1.48batch/s, loss=0.1104]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 2 epoch(s)
+Epoch 13/50
+Training: 100%|██████████| 2172/2172 [24:31<00:00,  1.48batch/s, loss=0.0968]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 3 epoch(s)
+Epoch 14/50
+Training: 100%|██████████| 2172/2172 [24:32<00:00,  1.47batch/s, loss=0.0890]
+Validation: 100%|██████████| 466/466 [04:15<00:00,  1.82batch/s]
+No improvement in val loss for 4 epoch(s)
+Epoch 15/50
+Training: 100%|██████████| 2172/2172 [24:32<00:00,  1.48batch/s, loss=0.0794]
+Validation: 100%|██████████| 466/466 [04:16<00:00,  1.82batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=Swin_T_Weights.IMAGENET1K_V1`. You can also use `weights=Swin_T_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+No improvement in val loss for 5 epoch(s)
+Early stopping triggered. Training stopped.
+Downloading: "https://download.pytorch.org/models/swin_t-704ceda3.pth" to /home/mk/.cache/torch/hub/checkpoints/swin_t-704ceda3.pth
+100%|██████████| 108M/108M [00:09<00:00, 11.7MB/s] 
+Model: swin_t, base_model_output_size: 768
+Total input size to fc: 1664
+Epoch 1/50
+Training: 100%|██████████| 4344/4344 [37:58<00:00,  1.91batch/s, loss=2.4007]
+Validation: 100%|██████████| 931/931 [05:18<00:00,  2.92batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Best model saved at epoch 1
+Epoch 2/50
+Training: 100%|██████████| 4344/4344 [37:59<00:00,  1.91batch/s, loss=2.3969]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Validation: 100%|██████████| 931/931 [05:18<00:00,  2.93batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Best model saved at epoch 2
+Epoch 3/50
+Training: 100%|██████████| 4344/4344 [37:57<00:00,  1.91batch/s, loss=2.3969]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Validation: 100%|██████████| 931/931 [05:17<00:00,  2.93batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+No improvement in val loss for 1 epoch(s)
+Epoch 4/50
+Training: 100%|██████████| 4344/4344 [37:57<00:00,  1.91batch/s, loss=2.3969]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Validation: 100%|██████████| 931/931 [05:18<00:00,  2.93batch/s]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Best model saved at epoch 4
+Epoch 5/50
+Training: 100%|██████████| 4344/4344 [38:00<00:00,  1.90batch/s, loss=2.3969]
+/home/mk/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Validation:  86%|████████▋ | 805/931 [04:46<00:44,  2.81batch/s]
+---------------------------------------------------------------------------
+KeyboardInterrupt                         Traceback (most recent call last)
+Cell In[2], line 103
+    101 with torch.no_grad():  # Wyłącz gradienty
+    102     with tqdm(total=len(val_loader), desc="Validation", unit="batch") as pbar_val:
+--> 103         for t_image, b_image, s_image, labels in val_loader:
+    104             t_image, b_image, s_image, labels = (
+    105                 t_image.to("cuda"),
+    106                 b_image.to("cuda"),
+    107                 s_image.to("cuda"),
+    108                 labels.to("cuda")
+    109             )
+    110             outputs = model(t_image, b_image, s_image)
+
+File ~/miniconda3/envs/dnn_gpu/lib/python3.11/site-packages/torch/utils/data/dataloader.py:701, in _BaseDataLoaderIter.__next__(self)
+    698 if self._sampler_iter is None:
+    699     # TODO(https://github.com/pytorch/pytorch/issues/76750)
+    700     self._reset()  # type: ignore[call-arg]
+--> 701 data = self._next_data()
+    702 self._num_yielded += 1
+    703 if (
+    704     self._dataset_kind == _DatasetKind.Iterable
+    705     and self._IterableDataset_len_called is not None
+    706     and self._num_yielded > self._IterableDataset_len_called
+    707 ):
+...
+--> 922 if (std == 0).any():
+    923     raise ValueError(f"std evaluated to zero after conversion to {dtype}, leading to division by zero.")
+    924 if mean.ndim == 1:
+
+KeyboardInterrupt: 
+Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output settings...
