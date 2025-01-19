@@ -10,7 +10,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class MultiInputModel(nn.Module):
-    def __init__(self, num_classes=11, base_model='efficientnet_v2_m', filter_num_base=4):
+    def __init__(self, num_classes=11, base_model='efficientnet_v2_m', filter_num_base=8):
         super(MultiInputModel, self).__init__()
         
         # Inicjalizacja modelu RGB
@@ -20,18 +20,29 @@ class MultiInputModel(nn.Module):
 
         # Inicjalizacja modelu binarnego
         self.binary_model = nn.Sequential(
-            nn.Conv2d(1, filter_num_base * 2, kernel_size=3, stride=1, padding=1),
+            # Warstwa 1: Splot + Pooling
+            nn.Conv2d(1, filter_num_base, kernel_size=3, stride=1, padding=1),  # 224x78 -> 224x78
             nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Conv2d(filter_num_base * 2, filter_num_base * 4, kernel_size=3, stride=1, padding=1),
+            nn.MaxPool2d((2, 2)),  # 224x78 -> 112x39 (połowa w obu kierunkach)
+            # Warstwa 2: Splot + Pooling
+            nn.Conv2d(filter_num_base, filter_num_base * 2, kernel_size=3, stride=1, padding=1),  # 112x39 -> 112x39
             nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.AdaptiveAvgPool2d((1, 1)),
+            nn.MaxPool2d((2, 2)),  # 112x39 -> 56x19
+            # Warstwa 3: Splot + Pooling
+            nn.Conv2d(filter_num_base * 2, filter_num_base * 4, kernel_size=3, stride=1, padding=1),  # 56x19 -> 56x19
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 56x19 -> 28x9
+            # Warstwa 4: Splot + Pooling
+            nn.Conv2d(filter_num_base * 4, filter_num_base * 8, kernel_size=3, stride=1, padding=1),  # 28x9 -> 28x9
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1)),  # Globalne wyciągnięcie cech do 1x1
+            # Spłaszczenie + w pełni połączona warstwa
             nn.Flatten(),
-            nn.Linear(filter_num_base * 4, 128),  # Dopasowanie wyjścia do 128
+            nn.Linear(filter_num_base * 8, 128),  # Dopasowanie wyjścia do 128
             nn.ReLU()
         )
         self.binary_model_output_size = 128
+
 
         # Warstwa łącząca
         total_input_size = self.base_model_output_size * 2 + self.binary_model_output_size
@@ -218,7 +229,7 @@ transform_rgb = transforms.Compose([
 
 # Transformacje dla obrazów binarnych
 transform_binary = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize((224 , 78)),
     transforms.ToTensor()
 ])
 
