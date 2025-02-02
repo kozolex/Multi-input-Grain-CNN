@@ -55,20 +55,22 @@ class ImageResizer:
         for _, row in df.iterrows():
             img_path = row["path"]
             class_name = row["class"]  # Klasa obrazu
-            rel_path = os.path.relpath(img_path, os.path.dirname(csv_path))  # Zachowanie struktury katalogów
+            #rel_path = os.path.relpath(img_path, os.path.dirname(csv_path))  # Zachowanie struktury katalogów
 
             # Ścieżka do katalogu wyjściowego
-            output_path = os.path.join(self.output_dir, rel_path)
+            #output_path = os.path.join(self.output_dir, rel_path)
+            rel_path = os.path.relpath(img_path, start=os.path.commonpath([img_path, csv_path]))  # Lepsze budowanie ścieżki
+            output_path = os.path.join(self.output_dir, os.path.basename(os.path.dirname(img_path)), os.path.basename(img_path))
 
             # Tworzenie katalogu, jeśli nie istnieje
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
             try:
                 # Wybór koloru tła na podstawie końcówki nazwy pliku
-                if file_path.name.endswith("_S.png"):
-                    background_color = (255, 255, 255)  # Białe tło
+                if img_path.name.endswith("_S.png"):
+                    self.fill_color  = (255, 255, 255)  # Białe tło
                 else:
-                    background_color = (0, 0, 0)  # Czarne tło
+                    self.fill_color  = (0, 0, 0)  # Czarne tło
                 # Otwórz obraz
                 image = Image.open(img_path)
 
