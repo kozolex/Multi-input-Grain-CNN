@@ -233,6 +233,14 @@ transform_binary = transforms.Compose([
     transforms.ToTensor()
 ])
 
+transform_rgb_224 = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
+
+# Transformacje dla obrazów binarnych
+transform_binary_224 = transforms.Compose([transforms.ToTensor()])
+
 #TEST MODELU
 def test_model(path_model, test_loader, device="cuda"):
     """
