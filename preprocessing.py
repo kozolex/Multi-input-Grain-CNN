@@ -9,7 +9,7 @@ class ImageResizer:
         
         Args:
             output_dir (str): Ścieżka do katalogu wyjściowego.
-            target_size (tuple): Docelowa rozdzielczość (wysokość, szerokość).
+            target_size (tuple): Docelowa rozdzielczość (szerokość, wysokość).
             fill_color (tuple): Kolor uzupełnienia w przypadku zmiany proporcji (domyślnie czarny).
         """
         self.output_dir = output_dir
@@ -54,20 +54,19 @@ class ImageResizer:
 
         for _, row in df.iterrows():
             img_path = row["path"]
-            class_name = row["class"]  # Klasa obrazu
-            #rel_path = os.path.relpath(img_path, os.path.dirname(csv_path))  # Zachowanie struktury katalogów
-
+            #print(f"Przetwarzanie: {img_path}")
+            #class_name = row["class"]  # Klasa obrazu
+            rel_path = os.path.join(os.path.basename(os.path.dirname(img_path)), os.path.basename(img_path))
+            #print(rel_path)
             # Ścieżka do katalogu wyjściowego
-            #output_path = os.path.join(self.output_dir, rel_path)
-            rel_path = os.path.relpath(img_path, start=os.path.commonpath([img_path, csv_path]))  # Lepsze budowanie ścieżki
-            output_path = os.path.join(self.output_dir, os.path.basename(os.path.dirname(img_path)), os.path.basename(img_path))
-
+            output_path = os.path.join(self.output_dir, rel_path)
+            #print(output_path)
             # Tworzenie katalogu, jeśli nie istnieje
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
             try:
                 # Wybór koloru tła na podstawie końcówki nazwy pliku
-                if img_path.name.endswith("_S.png"):
+                if img_path[:-6] == ("_S.png"):
                     self.fill_color  = (255, 255, 255)  # Białe tło
                 else:
                     self.fill_color  = (0, 0, 0)  # Czarne tło
@@ -79,7 +78,7 @@ class ImageResizer:
 
                 # Zapisz wynik
                 processed_image.save(output_path)
-                print(f"Przetworzono: {output_path}")
+                #print(f"Przetworzono: {output_path}")
 
             except Exception as e:
                 print(f"Błąd przetwarzania {img_path}: {e}")
