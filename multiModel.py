@@ -9,12 +9,97 @@ from sklearn.metrics import confusion_matrix, classification_report, accuracy_sc
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class CustomMultiInputModel(nn.Module):
+    def __init__(self, num_classes=11, filter_num_base=16):
+        """
+        Nowy model dla obrazów o wymiarach (80, 224) zamiast (224, 224).
+        
+        Args:
+            num_classes (int): Liczba klas do klasyfikacji.
+            filter_num_base (int): Podstawowa liczba filtrów w pierwszej warstwie konwolucyjnej.
+        """
+        super(CustomMultiInputModel, self).__init__()
+
+        # Konwolucyjna część modelu dla widoków RGB (T i B)
+        self.rgb_model = nn.Sequential(
+            nn.Conv2d(3, filter_num_base, kernel_size=3, stride=1, padding=1),  # 80x224 -> 80x224
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 80x224 -> 40x112
+
+            nn.Conv2d(filter_num_base, filter_num_base * 2, kernel_size=3, stride=1, padding=1),  # 40x112
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 40x112 -> 20x56
+
+            nn.Conv2d(filter_num_base * 2, filter_num_base * 4, kernel_size=3, stride=1, padding=1),  # 20x56
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 20x56 -> 10x28
+
+            nn.Conv2d(filter_num_base * 4, filter_num_base * 8, kernel_size=3, stride=1, padding=1),  # 10x28
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1))  # Global Average Pooling -> (1,1)
+        )
+        self.rgb_output_size = filter_num_base * 8  # 128
+
+        # Konwolucyjna część modelu dla obrazu binarnego (S)
+        self.binary_model = nn.Sequential(
+            nn.Conv2d(1, filter_num_base, kernel_size=3, stride=1, padding=1),  # 80x224
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 40x112
+
+            nn.Conv2d(filter_num_base, filter_num_base * 2, kernel_size=3, stride=1, padding=1),  # 40x112
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 20x56
+
+            nn.Conv2d(filter_num_base * 2, filter_num_base * 4, kernel_size=3, stride=1, padding=1),  # 20x56
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # 10x28
+
+            nn.Conv2d(filter_num_base * 4, filter_num_base * 8, kernel_size=3, stride=1, padding=1),  # 10x28
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1))  # Global Average Pooling -> (1,1)
+        )
+        self.binary_output_size = filter_num_base * 8  # 128
+
+        # Warstwa w pełni połączona dla końcowej klasyfikacji
+        self.fc = nn.Sequential(
+            nn.Linear(self.rgb_output_size * 2 + self.binary_output_size, 512),  # Łączymy RGB(T, B) + S
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, num_classes)
+        )
+
+    def forward(self, t_image, b_image, s_image):
+        # Przetwarzanie widoków RGB
+        t_features = self.rgb_model(t_image)
+        b_features = self.rgb_model(b_image)
+
+        # Przetwarzanie obrazu binarnego
+        s_features = self.binary_model(s_image)
+
+        # Spłaszczanie wyników
+        t_features = t_features.view(t_features.size(0), -1)
+        b_features = b_features.view(b_features.size(0), -1)
+        s_features = s_features.view(s_features.size(0), -1)
+
+        # Połączenie cech i klasyfikacja
+        combined_features = torch.cat([t_features, b_features, s_features], dim=1)
+        output = self.fc(combined_features)
+
+        return output
+
+
 class MultiInputModel(nn.Module):
     def __init__(self, num_classes=11, base_model='efficientnet_v2_m', filter_num_base=8):
         super(MultiInputModel, self).__init__()
         
         # Inicjalizacja modelu RGB
         self.base_model = base_model
+        if base_model == 'custom':
+            self.rgb_model, self.base_model_output_size = self._initialize_rgb_custom_model(base_model)
         self.rgb_model, self.base_model_output_size = self._initialize_rgb_model(base_model)
         print(f"Model: {base_model}, base_model_output_size: {self.base_model_output_size}")
 
@@ -55,6 +140,55 @@ class MultiInputModel(nn.Module):
         )
 
     def _initialize_rgb_model(self, base_model):
+        """
+        Inicjalizuje wybrany model sieci RGB i zwraca model oraz rozmiar jego wyjścia.
+        """
+        if base_model.startswith('efficientnet'):  # Obsługa EfficientNet i EfficientNetV2
+            model = getattr(models, base_model)(pretrained=True)
+            model.classifier = nn.Identity()
+            if base_model.startswith('efficientnet_v2'):
+                return model, 1280  # Wyjście dla EfficientNetV2-M
+            return model, 1280  # Wyjście dla EfficientNet-B0/B1
+        
+        elif base_model == 'googlenet':
+            model = models.googlenet(pretrained=True)
+            model.fc = nn.Identity()
+            return model, 1024
+        
+        elif base_model == 'inception_v3':
+            model = models.inception_v3(pretrained=True, aux_logits=False)  # Wyłącz dodatkowe głowice
+            model.fc = nn.Identity()
+            return model, 2048
+        
+        elif base_model == 'mobilenet_v2':
+            model = models.mobilenet_v2(pretrained=True)
+            model.classifier = nn.Identity()
+            return model, 1280
+        
+        elif base_model == 'mobilenet_v3_large' or base_model == 'mobilenet_v3_small':
+            model = getattr(models, base_model)(pretrained=True)
+            model.classifier = nn.Identity()
+            return model, 576
+        
+        elif base_model.startswith('resnet'):  # Obsługa ResNet (np. resnet18, resnet50)
+            model = getattr(models, base_model)(pretrained=True)
+            model.fc = nn.Identity()
+            return model, 2048 if '50' in base_model or '101' in base_model else 512  # Rozmiar zależny od wariantu
+        
+        elif base_model == 'swin_t':
+            model = models.swin_t(pretrained=True)
+            model.head = nn.Identity()
+            return model, 768
+        
+        elif base_model == 'vit_b_16':  # VisionTransformer
+            model = models.vit_b_16(pretrained=True)
+            model.heads = nn.Identity()
+            return model, 768
+
+        else:
+            raise ValueError(f"Unsupported base model: {base_model}")
+    
+    def _initialize_rgb_custom_model(self, base_model):
         """
         Inicjalizuje wybrany model sieci RGB i zwraca model oraz rozmiar jego wyjścia.
         """
