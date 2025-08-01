@@ -1,0 +1,24 @@
+Dokładność: 0.1437
+
+Raport klasyfikacji:
+                                       precision    recall  f1-score   support
+
+                                basil       0.94      0.02      0.04      1430
+                                 ella       0.43      0.13      0.20      1342
+                       jary_hajduczek       0.41      0.01      0.02      1339
+jary_jeczmien_skald_czyszczony_insect       0.49      0.04      0.07      1368
+               jary_oberek_czyszczony       0.07      0.06      0.07      1321
+                 jary_skarb_czyzczony       0.44      0.32      0.37      1385
+                         kucyk_insect       0.00      0.00      0.00      1165
+                           kws_atrika       0.11      0.99      0.20      1361
+                             kws_olof       0.00      0.00      0.00      1419
+                         nagradowicki       0.40      0.00      0.01      1287
+                              penguin       0.67      0.00      0.00      1467
+
+                             accuracy                           0.14     14884
+                            macro avg       0.36      0.14      0.09     14884
+                         weighted avg       0.37      0.14      0.09     14884
+
+
+Najczęściej mylone klasy: kws_olof → kws_atrika
+Liczba pomyłek: 1347
