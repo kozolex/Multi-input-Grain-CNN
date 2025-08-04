@@ -375,6 +375,24 @@ transform_rgb_224 = transforms.Compose([
 # Transformacje dla obrazów binarnych
 transform_binary_224 = transforms.Compose([transforms.ToTensor()])
 
+# Transformacje dla obrazów RGB z auugumentacją dla 80x224
+train_transform_rgb_80 = transforms.Compose([
+    transforms.Resize((80, 224)),  # Skalowanie do 80x224
+    transforms.RandomHorizontalFlip(p=0.5),  # Losowe odbicie poziome
+    transforms.RandomVerticalFlip(p=0.5),  # Losowe odbicie pionowe
+    transforms.RandomRotation(degrees=5),  # Losowy obrót o ±15 stopni
+    transforms.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0.1),  # Losowe zmiany jasności, kontrastu, nasycenia
+    transforms.ToTensor(),  # Konwersja na tensor
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalizacja ImageNet
+])
+val_transform_rgb_80 = transforms.Compose([
+    transforms.Resize((80, 224)),  # Skalowanie do 80x224
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
+# Transformacje dla obrazów binarnych
+transform_binary_80 = transforms.Compose([transforms.ToTensor()])
+
 #TEST MODELU
 def test_model(path_model, test_loader, device="cuda"):
     """
